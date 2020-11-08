@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <title>Smart Parking System</title>
+    <link rel="stylesheet" href="styles\Login.css">
+    
+</head>
+
+<body>
+    
+    <div class="loginbox">
+        <img src="UserIcon2.png" class="avatar">
+        <div class="buttonbox">
+            <div id="btn"></div>
+            <button type="button" class="toggle" onclick="login()">Log In</button>
+            <button type="button" class="toggle" onclick="register()">Register</button>
+        </div>
+        <h1>Park Smarter Now</h1>
+        <form id= "login" class = "LoginPage">
+            <p>Username</p>
+            <input type="text" class="LoginInput" placeholder="Enter your username">
+            <p>Password</p>
+            <input type="password" class="LoginInput" placeholder= "Password"><br>
+            <input type="submit" class="Loginbtn" value="Login"><br>
+        </form>
+        
+        <form id="CreateAcc" class="LoginPage">
+            <p>Create your Username</p>
+            <input type="text" class="LoginInput" placeholder="Enter your username">
+            <p>Create a Password</p>
+            <input type="password" class="LoginInput" placeholder= "Password">
+            <p>Confirm your Password</p>
+            <input type="password" class="LoginInput" placeholder= "Re-enter your Password">
+            <input type="submit" class="Loginbtn" value="Submit"><br>
+        </form>
+    </div>
+</body>
+
+<script src="javascript\Login.js"></script>
