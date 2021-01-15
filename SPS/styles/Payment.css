@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Ubuntu');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto';
+}
+
+body{
+  background: black;
+  margin: 0 10px;
+}
+
+.paymentbox{
+  background: #f8f8f8;
+  max-width: 420px;
+  margin: 50px auto;
+  height: auto;
+  padding: 35px;
+  padding-top: 70px;
+  border-radius: 5px;
+  position: relative;
+  transition: 0.5s;
+}
+
+.paymentbox h2{
+  position:relative;
+  top: -50px;
+  letter-spacing: 0px;
+  margin-bottom: 40px;
+  color: #0d3c61;
+  font-size: 25px;
+}
+
+.paymentbox img{
+  position:relative;
+  background-size: auto;
+  height: 30px;
+  top: -80px;
+  margin-right: 10px;
+}
+
+.form .label{
+  position: relative;
+  display: block;
+  color: #555555;
+  top: -60px;
+  margin-bottom:5px;
+}
+
+.form .input{
+  position: relative;
+  top: -60px;
+  padding: 13px 0px 13px 25px;
+  width: 100%;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;  
+  border-bottom: 3px solid #dddddd;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  padding-left: 50px;
+  word-spacing: 1px;
+  outline: none;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #555555;
+  margin-bottom: 20px;
+}
+
+.form input:focus{
+  border: 3px solid blue;
+}
+
+.form .NameValidity{
+  position: absolute;
+  top: 95px;
+  width: 100%;
+  word-spacing: 1px;
+  outline: none;
+  font-size: 12px;
+  font-family: sans-serif;
+  color: red;
+  visibility:hidden;
+  z-index:1;
+}
+
+
+.form .CCValidity{
+  position: absolute;
+  top: 143px;
+  width: 100%;
+  word-spacing: 1px;
+  outline: none;
+  font-size: 12px;
+  font-family: sans-serif;
+  color: red;
+  visibility:hidden;
+  z-index:1;
+}
+
+.form .DateValidity{
+  position: absolute;
+  top: 190px;
+  width: 100%;
+  word-spacing: 1px;
+  outline: none;
+  font-size: 12px;
+  font-family: sans-serif;
+  color: red;
+  visibility:hidden;
+  z-index:1;
+}
+
+.form .CreditCardImage{
+  position: absolute;
+  top: 322px;
+  z-index: 1;
+  left: 320px;
+}
+
+.form .CVVValidity{
+  position: absolute;
+  top: 190px;
+  left: 110px;
+  width: 100%;
+  word-spacing: 1px;
+  outline: none;
+  font-size: 12px;
+  font-family: sans-serif;
+  color: red;
+  visibility:hidden;
+  z-index:1;
+}
+
+.form .TopUpAmount{
+  padding-left: 15px;
+}
+
+.form .TopUpAmountValidity{
+  position: absolute;
+  top: 238px;
+  left: 20px;
+  width: 100%;
+  word-spacing: 1px;
+  outline: none;
+  font-size: 12px;
+  font-family: sans-serif;
+  color: red;
+  visibility:hidden;
+  z-index:1;
+}
+
+.card-grp{
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-item{
+  width: 48%;
+}
+
+.space{
+  margin-bottom: 0px;
+}
+
+.icon-relative{
+  position: relative;
+
+}
+
+.icon-relative .fas,
+.icon-relative .far{
+  position: absolute;
+  bottom: 12px;
+  left: 15px;
+  font-size: 20px;
+  color: #555555;
+  top: -22px;
+}
+
+.form .PayButton{
+  position: relative;
+  top: 0px;
+  background: #2196F3;
+  padding: 12px;
+  text-align: center;
+  color: #f8f8f8;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  font-family:sans-serif;
+  opacity:0.6;
+  transition: 0.3s;
+}
+
+.PayButton:hover{opacity:1;}
+
+.PayButton:disabled{
+  background-color:Grey;
+  opacity:0.6;
+}
+
+
+@media screen and (max-width: 420px){
+  .card-grp{
+    flex-direction: column;
+  }
+  .card-item{
+    width: 100%;
+  }
+  .btn{
+    margin-top: 20px;
+  }
+}
