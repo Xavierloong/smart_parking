@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Parking System</title>
+    <link rel="stylesheet" href="styles\MainPage.css">
+    
+</head>
+
+<body>
+    <ul>
+        <li style="float: right"><button type="button" class="LogOut" id="LogOut">Log Out</button></li>
+        <li style="float: right"><button type="button" class="TopUp" id="TopUp">Top Up</button></li>
+        <div id="PaymentModal" class="PaymentModal">
+            <div class="PaymentModalContent" id="PaymentModalContent">
+                
+                <span class="close">&times;</span>
+                <iframe src="Payment.html" title="Secure Checkout" scrolling="no">
+                </iframe>
+                
+            </div>
+        </div>
+    </ul>
+
+
+    <script src="./javascript/MainPage.js"></script>
+    
+</body>
+</html>
