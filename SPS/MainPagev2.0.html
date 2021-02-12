@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Parking System</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+  <link rel="stylesheet" href="styles/Payment.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="styles/MainPagev2.0.css">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+  <!-- jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <!-- Popper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+  <script src="./javascript/modified-cleave.min.js"></script>
+  <script src="./javascript/Format.js"></script>	
+  <script src="./javascript/Payment.js"></script>
+</head>
+
+<body>
+    <ul class = "navbar-right">
+        <li style="float: left"><label id="MainLabel">Park Smarter Now</label>
+        <li style="float: right"><button type="button" class="btn LogOut " id="LogOut">Log Out</button></li>
+        <li style="float: right"><button type="button" class="btn TopUp" id="TopUp" data-toggle="modal" data-target="#PaymentModal">Top Up</button></li>
+        <li style="float: right"><button type="button" class="btn btn-link AboutUs" id="AboutUsbtn" data-toggle="modal" data-target="#AboutUs">About Us</a></li>
+    </ul>
+
+    <div id="AboutUs" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">About Us</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  
+              </div>
+              <div class="modal-body">
+                <p>This webpage is for Capstone Project purposes only.</p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+      </div>
+      
+  </div>
+
+    <div id="PaymentModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="paymentbox">
+                  <h2>Secure Checkout</h2>
+                  <img src = "./PaymentPageResource/Mastercard.png" class="CardPreferred">
+                  <img src = "./PaymentPageResource/Visa.png" class="CardPreferred">
+                  <img src = "./PaymentPageResource/Amex.png" class="CardPreferred">
+                  <img src = "./PaymentPageResource/unionPay.png" class="CardPreferred">
+                  <form name = "paymentform"></form>
+              
+                  <div class="form">
+                    <div class="icon-relative">
+                      <label class="label">Cardholder</label>
+                      <input type="text" class="input" id="Name" placeholder="Name on card" onkeyup="ValidateName(this.value);ButtonEnable()">
+                      <i class="far fa-user"></i>
+                      <label class="NameValidity" id="NameValidity">Please input a valid name</label>
+                    </div>
+              
+                    <div class="icon-relative CreditCardImage">
+                      <label class="label">Card no.</label>
+                      <input type="text" class="CreditCard input" id="CreditCard" placeholder="Credit Card No." onkeyup="update(this.value); ValidateCVV();ButtonEnable()">
+                      <i class="far fa-credit-card"></i>
+                      <img src = "" id="CreditCardImage">
+                      <label class="CCValidity" id="CCTypeValidity">We only accept Visa, Mastercard, American Express and UnionPay</label>
+                      <label class="CCValidity" id="CCValidity">Please enter a valid card number</label>
+                    </div>
+              
+                    <div class="card-grp">
+                      <div class="card-item icon-relative">
+                        <label class="label">Expiry Date</label>
+                        <input type="text" class="ExpiryDate input" id="ExpiryDate" placeholder="MM/YY" onkeyup="ValidateDate(this.value);ButtonEnable()">
+                        <i class="far fa-calendar-alt"></i>
+                        <label class="DateValidity" id="DateValidity">Please input a valid date</label>
+                      </div>
+              
+                      <div class="card-item icon-relative CVVValidity">
+                        <label class="label">CVV/CID</label>
+                        <input type="text" class="CVV input" id="CVV" placeholder="000" disabled="true" onkeyup="ValidateCVV(this.value);ButtonEnable()">
+                        <i class="fas fa-lock"></i>
+                        <label class="CVVValidity" id="CVVValidity">Please input a valid CVV</label>
+                      </div>
+              
+                    </div>
+              
+                    <div class="space">
+                      <label class="label">Top Up Amount</label>
+                      <input type = "text" class="TopUpAmount input" id="TopUpAmount" placeholder="10" onkeyup="ValidateTopUpAmount(this.value);ButtonEnable()">
+                      <label class="TopUpAmountValidity" id="TopUpAmountValidity1">Maximum top up amount is MYR 100</label>
+                      <label class="TopUpAmountValidity" id="TopUpAmountValidity2">Please input an amount</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">  
+                    <button type="button" class="btn btn-success" id="PayButton" disabled= "false" onclick="Pay()">Pay</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="Wallpaper2.png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="Wallpaper1.png" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+    <div>
+        <button type="button" class="btn LogOut" id="SetapakCentral" onclick="window.location.href='https://www.google.com/maps/dir//Setapak+Central,+67,+Jalan+Taman+Ibu+Kota,+Danau+Kota,+53300+Kuala+Lumpur,+Federal+Territory+of+Kuala+Lumpur/@3.2046463,101.7185746,17z/data=!3m1!5s0x31cc38119b799ac3:0xb9dac82945d8f745!4m9!4m8!1m0!1m5!1m1!1s0x31cc3812394a802f:0x421644d8c276cb07!2m2!1d101.7207633!2d3.2046409!3e0';">Navigate to Setapak Central</button>
+    </div>
+
+    <script src="./javascript/modified-cleave.min.js"></script>
+    <script src="./javascript/Format.js"></script>	
+    <script src="./javascript/Payment.js"></script>
+</body>
+</html>

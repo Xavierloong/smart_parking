@@ -176,13 +176,13 @@ function ValidateTopUpAmount(){
 	var TopUpAmountValidity1 = document.getElementById("TopUpAmountValidity1");
 	var TopUpAmountValidity2 = document.getElementById("TopUpAmountValidity2");
 
-	if (TopUpAmount > 100){
+	if ((TopUpAmount < 1) || (TopUpAmount > 100)){
 		TopUpAmountValidity1.style.visibility = "visible";
 		TopUpAmountValidity2.style.visibility = "hidden";
 		ErrorEffect.style.borderColor = "Red";
 		VAmount = 0;
 	}
-	else if ((TopUpAmount > 0) || (TopUpAmount <= 100)) {
+	else if ((TopUpAmount > 1) || (TopUpAmount <= 100)) {
 		TopUpAmountValidity1.style.visibility = "hidden";
 		TopUpAmountValidity2.style.visibility = "hidden";
 		ErrorEffect.style.borderColor = "lightgreen";

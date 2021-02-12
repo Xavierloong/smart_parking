@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Parking System</title>
     <link rel="stylesheet" href="styles\MainPage.css">
-    
 </head>
 
 <body>
     <ul>
+        <li style="float: left"><label>Park Smarter Now</label>
         <li style="float: right"><button type="button" class="LogOut" id="LogOut">Log Out</button></li>
         <li style="float: right"><button type="button" class="TopUp" id="TopUp">Top Up</button></li>
         <div id="PaymentModal" class="PaymentModal">
@@ -21,9 +21,21 @@
                 
             </div>
         </div>
+        <li style="float:right"><a href="#AboutUs">About Us</a></li>
     </ul>
 
+    <div>
+        <div class="slider" id="slider">
+            <figure>
+                <img src="Wallpaper2.png">
+                <img src="Wallpaper1.png">
+            </figure>
+        </div>
+    </div>
 
+    <div>
+        <button type="button" class="LogOut" id="Navigate" onclick="window.location.href='https://www.google.com/maps/dir//Setapak+Central,+67,+Jalan+Taman+Ibu+Kota,+Danau+Kota,+53300+Kuala+Lumpur,+Federal+Territory+of+Kuala+Lumpur/@3.2046463,101.7185746,17z/data=!3m1!5s0x31cc38119b799ac3:0xb9dac82945d8f745!4m9!4m8!1m0!1m5!1m1!1s0x31cc3812394a802f:0x421644d8c276cb07!2m2!1d101.7207633!2d3.2046409!3e0';">Setapak Central</button>
+    </div>
     <script src="./javascript/MainPage.js"></script>
     
 </body>

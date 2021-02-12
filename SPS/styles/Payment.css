@@ -7,20 +7,18 @@
   font-family: 'Roboto';
 }
 
-body{
-
-}
 
 .paymentbox{
   background: #f8f8f8;
-  width: 420px;
   margin: 0px;
   height: auto;
   padding: 35px;
-  padding-top: 70px;
+  padding-top: 60px;
+  padding-bottom: 0px;
   border-radius: 5px;
   position: relative;
   transition: 0.5s;
+  margin-bottom: 0;
 }
 
 .paymentbox h2{
@@ -39,6 +37,7 @@ body{
   top: -80px;
   margin-right: 10px;
 }
+
 
 .form .label{
   position: relative;
@@ -74,7 +73,8 @@ body{
 
 .form .NameValidity{
   position: absolute;
-  top: 95px;
+  margin-top: -6px;
+  right: 0px;
   width: 100%;
   word-spacing: 1px;
   outline: none;
@@ -88,7 +88,8 @@ body{
 
 .form .CCValidity{
   position: absolute;
-  top: 143px;
+  margin-top: -6px;
+  right: 0px;
   width: 100%;
   word-spacing: 1px;
   outline: none;
@@ -101,7 +102,8 @@ body{
 
 .form .DateValidity{
   position: absolute;
-  top: 190px;
+  margin-top: -6px;
+  right: 0px;
   width: 100%;
   word-spacing: 1px;
   outline: none;
@@ -112,17 +114,18 @@ body{
   z-index:1;
 }
 
-.form .CreditCardImage{
+.form #CreditCardImage{
   position: absolute;
-  top: 322px;
+  margin-top: 60px;
   z-index: 1;
-  left: 320px;
+  right: 10px;
+
 }
 
-.form .CVVValidity{
+.form #CVVValidity{
   position: absolute;
-  top: 190px;
-  left: 110px;
+  margin-top: -6px;
+  right: 0px;
   width: 100%;
   word-spacing: 1px;
   outline: none;
@@ -139,8 +142,8 @@ body{
 
 .form .TopUpAmountValidity{
   position: absolute;
-  top: 238px;
-  left: 20px;
+  margin-top: -6px;
+  left: 35px;
   width: 100%;
   word-spacing: 1px;
   outline: none;
@@ -176,33 +179,8 @@ body{
   left: 15px;
   font-size: 20px;
   color: #555555;
-  top: -22px;
+  top: -18px;
 }
-
-.form .PayButton{
-  position: relative;
-  top: 0px;
-  background: #2196F3;
-  padding: 12px;
-  text-align: center;
-  color: #f8f8f8;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-  font-family:sans-serif;
-  opacity:0.6;
-  transition: 0.3s;
-}
-
-.PayButton:hover{opacity:1;}
-
-.PayButton:disabled{
-  background-color:Grey;
-  cursor:unset;
-  opacity:0.6;
-}
-
 
 @media screen and (max-width: 420px){
   .card-grp{
