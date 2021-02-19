@@ -1,12 +1,25 @@
 var CreditCardType = 0;
 document.getElementById("Name").focus();
-var VName, VCard, VDate, VCVV, VAmount = 0;
+var VCardg = 0;
+var WalletBalanceg = 0;
 
+function Initiate(){
+	var WalletBalance = Number(0.00);
+
+	var n = new Number(WalletBalance);
+	x = n.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+	document.getElementById("WalletBalance").innerHTML = "Available Balance: MYR " + x;
+	document.getElementById("WalletButton").innerHTML = '<i class="fas fa-wallet"></i>' + "  MYR " + x;
+
+	WalletBalanceg = WalletBalance;
+}
 
 function ValidateName(){
 	var Name = document.getElementById("Name").value;
 	var NameValidity = document.getElementById("NameValidity");
 	var ErrorEffect = document.getElementById("Name");
+	var VName = 0;
 
 	if (Name == ""){
 		NameValidity.style.visibility = "visible";
@@ -19,6 +32,7 @@ function ValidateName(){
 		VName = 1;
 	}
 
+	return VName;
 }
 
 function validateCreditCardNumber(cardNumber) {
@@ -66,6 +80,7 @@ function update(cardNumber) {
 	var valid = document.getElementById("CCValidity");
 	var ValidCardType = document.getElementById("CCTypeValidity")
 	CreditCardType = cardType(cardNumber)
+	var VCard = 0;
 
 	if(validateCreditCardNumber(cardNumber)) {
 		valid.style.visibility = "hidden"
@@ -88,16 +103,14 @@ function update(cardNumber) {
 		ValidCardType.style.visibility = "hidden"	
 	}
 
-	
+	VCardg = VCard;
 }
 
 function ValidateDate(ExpiryDate){
-	console.log(ExpiryDate);
 	var DateValidity = document.getElementById("DateValidity");
 	var ErrorEffect = document.getElementById("ExpiryDate");
 
 	var InputDate = document.getElementById("ExpiryDate").value;
-	console.log(InputDate);
 	var d = new Date();
 	var currentYear = d.getFullYear();
 	var currentMonth = d.getMonth()+1;
@@ -105,6 +118,8 @@ function ValidateDate(ExpiryDate){
 	var parts = InputDate.split("/",2);
 	var year = parseInt(parts[1],10) + 2000;
 	var month = parseInt(parts[0],10);
+
+	var VDate = 0;
 
 	if (year < currentYear || (year == currentYear && month < currentMonth) 
 	|| InputDate == "") {
@@ -117,6 +132,8 @@ function ValidateDate(ExpiryDate){
 		ErrorEffect.style.borderColor = "lightgreen";
 		VDate = 1;
 	}
+
+	return VDate;
 }
 
 function ValidateCVV(){
@@ -125,11 +142,11 @@ function ValidateCVV(){
 	CreditCardNumber = document.getElementById("CreditCard").value;
 	CreditCardLength = String(CreditCardNumber.split(" ").join("")).length;
 
-	console.log(CreditCardLength)
 
 	CVVlength = String(CVV).length;
 	ErrorEffect = document.getElementById("CVV"); 
-	console.log(CreditCardType)
+
+	var VCVV = 0;
 
 	if ((CreditCardType == "amex") && (CreditCardLength == 15)){
 		document.getElementById("CVV").maxLength = "4"
@@ -158,35 +175,36 @@ function ValidateCVV(){
 	else if (ErrorEffect.disabled == true){
 		CVVValidity.style.visibility = "hidden";
 		ErrorEffect.style.borderColor = "#dddddd";
+		VCVV=0;
 	}
 	else{
 		CVVValidity.style.visibility = "visible";
 		ErrorEffect.style.borderColor = "Red";
 		VCVV = 0;
 	}
+
+	return VCVV;
 }
 
 function ValidateTopUpAmount(){
 	var ErrorEffect = document.getElementById("TopUpAmount");
 	var InputAmount = document.getElementById("TopUpAmount").value;
-	var parts = InputAmount.split(" ",2);
-	var TopUpAmount = parseInt(parts[1],10);
-	console.log(TopUpAmount)
 
 	var TopUpAmountValidity1 = document.getElementById("TopUpAmountValidity1");
 	var TopUpAmountValidity2 = document.getElementById("TopUpAmountValidity2");
+	var VAmount = 0;
 
-	if ((TopUpAmount < 1) || (TopUpAmount > 100)){
-		TopUpAmountValidity1.style.visibility = "visible";
-		TopUpAmountValidity2.style.visibility = "hidden";
-		ErrorEffect.style.borderColor = "Red";
-		VAmount = 0;
-	}
-	else if ((TopUpAmount > 1) || (TopUpAmount <= 100)) {
+	if ((InputAmount >= 1) && (InputAmount <= 100)) {
 		TopUpAmountValidity1.style.visibility = "hidden";
 		TopUpAmountValidity2.style.visibility = "hidden";
 		ErrorEffect.style.borderColor = "lightgreen";
 		VAmount = 1;
+	}
+	else if ((InputAmount < 1) || (InputAmount > 100)){
+		TopUpAmountValidity1.style.visibility = "visible";
+		TopUpAmountValidity2.style.visibility = "hidden";
+		ErrorEffect.style.borderColor = "Red";
+		VAmount = 0;
 	}
 	else {
 		TopUpAmountValidity1.style.visibility = "hidden";
@@ -194,15 +212,61 @@ function ValidateTopUpAmount(){
 		ErrorEffect.style.borderColor = "Red";
 		VAmount = 0;
 	}
+
+	return [VAmount, InputAmount];
 }
 
 function ButtonEnable(){
-	var ButtonEnable = VName*VCard*VDate*VCVV*VAmount;
+	var ButtonEnable=0;
 
-	if (ButtonEnable == 1 ){
+	var a = ValidateName();
+	var b = VCardg;
+	var c = ValidateDate();
+	var d = ValidateCVV();
+	var e = ValidateTopUpAmount();
+	var e1 = e[0];
+
+	ButtonEnable = a*b*c*d*e1;
+
+	if (ButtonEnable == "1"){
 		document.getElementById("PayButton").disabled=false;
 	}
-	else{
+	else if (ButtonEnable == "0"){
 		document.getElementById("PayButton").disabled=true;
 	}
+}
+
+function Pay(){
+	var InitialBalance = WalletBalanceg;
+	TopUpAmount = Number(0.00);
+
+	var e = ValidateTopUpAmount();
+	var TopUpAmount = e[1];
+
+	FinalBalance = Number(InitialBalance) + Number(TopUpAmount);
+	console.log(FinalBalance);
+	console.log(InitialBalance);
+	console.log(TopUpAmount);
+
+	var n = new Number(FinalBalance);
+	x = n.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+	/*var n = new Number(WalletBalance);
+	var myObj = {
+ 		style: "currency",
+  		currency: "MYR"
+	}
+
+	x = n.toLocaleString("en-GB", myObj);
+	console.log(x)*/
+
+	document.getElementById("WalletBalance").innerHTML = "Available Balance: MYR " + x;
+	document.getElementById("NewBalance").innerHTML = "Your New Balance is: MYR " + x;
+	document.getElementById("WalletButton").innerHTML = '<i class="fas fa-wallet"></i>' + "  MYR " + x;
+
+	WalletBalanceg = Number(FinalBalance);
+}
+
+function clearPaymentForm(){
+	document.getElementById("PaymentForm").reset();
 }

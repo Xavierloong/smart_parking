@@ -24,11 +24,11 @@
   <script src="./javascript/Payment.js"></script>
 </head>
 
-<body>
+<body onload="Initiate()">
     <ul class = "navbar-right">
         <li style="float: left"><label id="MainLabel">Park Smarter Now</label>
         <li style="float: right"><button type="button" class="btn LogOut " id="LogOut">Log Out</button></li>
-        <li style="float: right"><button type="button" class="btn TopUp" id="TopUp" data-toggle="modal" data-target="#PaymentModal">Top Up</button></li>
+        <li style="float: right"><button class="btn TopUp" data-toggle="modal" data-target="#Wallet" id="WalletButton"><i class="fas fa-wallet"></i></button></li>
         <li style="float: right"><button type="button" class="btn btn-link AboutUs" id="AboutUsbtn" data-toggle="modal" data-target="#AboutUs">About Us</a></li>
     </ul>
 
@@ -48,14 +48,50 @@
               </div>
           </div>
       </div>
-      
-  </div>
+    </div>
+
+    <div id="Wallet" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Balance</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  
+              </div>
+              <div class="modal-body">
+                <p id="WalletBalance"></p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#PaymentModal" onclick="clearPaymentForm()">Top Up</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="clearPaymentForm()">Close</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div id="SuccessfulTopUp" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Successful Top Up</h4>
+                  <button type="button" class="close" data-dismiss="modal" onclick="clearPaymentForm()">&times;</button>
+                  
+              </div>
+              <div class="modal-body">
+                <p id="NewBalance"></p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="clearPaymentForm()">Close</button>
+              </div>
+          </div>
+      </div>
+    </div>
 
     <div id="PaymentModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" onclick="clearPaymentForm()">&times;</button>
                 </div>
                 <div class="paymentbox">
                   <h2>Secure Checkout</h2>
@@ -63,7 +99,7 @@
                   <img src = "./PaymentPageResource/Visa.png" class="CardPreferred">
                   <img src = "./PaymentPageResource/Amex.png" class="CardPreferred">
                   <img src = "./PaymentPageResource/unionPay.png" class="CardPreferred">
-                  <form name = "paymentform"></form>
+                  <form name = "paymentform" id="PaymentForm">
               
                   <div class="form">
                     <div class="icon-relative">
@@ -99,17 +135,19 @@
               
                     </div>
               
-                    <div class="space">
+                    <div class="icon-relative space">
                       <label class="label">Top Up Amount</label>
                       <input type = "text" class="TopUpAmount input" id="TopUpAmount" placeholder="10" onkeyup="ValidateTopUpAmount(this.value);ButtonEnable()">
+                      <i class="far fa-money-bill-alt"></i>
                       <label class="TopUpAmountValidity" id="TopUpAmountValidity1">Maximum top up amount is MYR 100</label>
                       <label class="TopUpAmountValidity" id="TopUpAmountValidity2">Please input an amount</label>
                     </div>
+                    </form>
                   </div>
                 </div>
                 <div class="modal-footer">  
-                    <button type="button" class="btn btn-success" id="PayButton" disabled= "false" onclick="Pay()">Pay</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" id="PayButton" disabled= "true" onclick="Pay()" data-dismiss="modal" data-toggle="modal" data-target="#SuccessfulTopUp">Pay</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="clearPaymentForm()">Close</button>
                 </div>
             </div>
         </div>

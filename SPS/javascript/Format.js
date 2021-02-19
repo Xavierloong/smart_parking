@@ -18,7 +18,6 @@ var cleave = new Cleave('.CVV', {
 });
 
 var cleave = new Cleave('.TopUpAmount', {
-    prefix: 'MYR',
-    blocks: [3,3],
+    blocks: [3],
     numericOnly: true
 });
